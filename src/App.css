@@ -68,3 +68,38 @@
 	justify-content: center;
 	gap: .5rem;
 }
+
+.info {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+.ip {
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #fff;
+	background-color: #3864ac;
+	padding: .5rem 1rem;
+	border-radius: .5rem;
+}
+
+.info-line {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: .5rem;
+}
+
+.icon {
+	color: #008eff;
+}
+
+.location {
+	font-weight: 700;
+	color: #008eff;
+}

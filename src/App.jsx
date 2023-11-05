@@ -10,6 +10,7 @@ import {
 	FaPhoneAlt,
 	FaRegCalendar,
 } from "react-icons/fa";
+import dayjs from 'dayjs';
 
 const App = () => {
   const [data, setData] = useState(null);
@@ -17,6 +18,8 @@ const App = () => {
     lat: "",
     lng: "",
   });
+  const currentDate = dayjs().format("D MMM YYYY");
+  const [currentTime, setCurrentTime] = useState(dayjs().format("HH:mm"));
 
   useEffect(() => {
     async function getIpAddress() {
@@ -42,6 +45,14 @@ const App = () => {
     }
     getIpAddress();
   }, []);
+
+  useEffect(() => {
+		const interval = setInterval(() => {
+			setCurrentTime(dayjs().format("HH:mm"));
+		}, 60000);
+
+		return () => clearInterval(interval);
+	}, []);
   
   return (
     <div className="App">
@@ -71,6 +82,26 @@ const App = () => {
 						</Popup>
         </Marker>
       </MapContainer>
+      <div className="info">
+        <p className="ip">Your IP address: {data?.ip}</p>
+        <div className="info-line">
+          <GoGlobe className="icon" />
+          <span>Location:</span>
+          <span className='location'>
+            {data?.city}, {data?.country}
+          </span>
+        </div>
+        <div className="info-line">
+          <FaRegCalendar className="icon" />  
+          <span>Today is:</span>
+          <span>{currentDate}</span>
+        </div>
+        <div className="info-line">
+          <FaClock className="icon" />
+          <span>Time:</span>
+          <span>{currentTime}</span>
+        </div>
+      </div>
     </div>
   )
 }
